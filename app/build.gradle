@@ -1,0 +1,70 @@
+apply plugin: 'com.android.application'
+apply plugin: 'McImage'
+def spider_man = "1.1.5"
+def spider_man_no_op = "1.1.4"
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.0"
+    defaultConfig {
+        applicationId "com.grechur.toolsdemo"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'com.android.support.test:rules:1.1.1'
+
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.0'      //核心必须依赖
+    implementation 'com.scwang.smart:refresh-header-classics:2.0.0'    //经典刷新头
+    implementation 'com.scwang.smart:refresh-footer-classics:2.0.0'    //经典加载
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation "com.simple:spiderman:$spider_man"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+    implementation project(':common')
+}
+McImageConfig {
+    isCheckSize false //Whether to detect image size，default true
+    optimizeType "Compress" //Optimize Type，"ConvertWebp" or "Compress"，default "Compress", "CompressWebp" is a better compression ratio but it don't support api < 18
+    maxSize 1*1024*1024 //big image size threshold，default 1MB
+    enableWhenDebug true //switch in debug build，default true
+    isCheckPixels true // Whether to detect image pixels of width and height，default true
+    maxWidth 1000 //default 1000
+    maxHeight 1000 //default 1000
+    whiteList = [ //do not do any optimization for the images who in the list
+                  "icon_launcher.png"
+    ]
+    mctoolsDir "$rootDir"
+    isSupportAlphaWebp true  //Whether support convert the Image with Alpha chanel to Webp，default false, the images with alpha chanels will be compressed.if config true, its need api level >=18 or do some compatible measures
+    multiThread true  //Whether open multi-thread processing，default true
+    bigImageWhiteList = [] //do not detect big size or large pixels for the images who in the list
+}

@@ -1,0 +1,5 @@
+include ':app'
+rootProject.name='ToolsDemo'
+include ':net'
+include ':login'
+include ':common'
