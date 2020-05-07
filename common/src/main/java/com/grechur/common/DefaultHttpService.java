@@ -41,15 +41,15 @@ public class DefaultHttpService {
         sHttpService.setContext(context == null ? Applications.getCurrent() : context);
         builder.addInterceptor(new UserAgentInterceptor(assembleUserAgent, versionName, channalId,deviceId,versonCode,imei2, supportedAbis));
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        if (BuildConfig.DEBUG) {
+//        if (BuildConfig.DEBUG) {
+//            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+//        } else {
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        } else {
-            logging.setLevel(HttpLoggingInterceptor.Level.NONE);
-        }
-        if (BuildConfig.DEBUG) {
+//        }
+//        if (BuildConfig.DEBUG) {
             builder.addInterceptor(logging);
             builder.addNetworkInterceptor(new StethoInterceptor());
-        }
+//        }
         builder.sslSocketFactory(factory);
         builder.hostVeritifer(hostVeritifer);
     }

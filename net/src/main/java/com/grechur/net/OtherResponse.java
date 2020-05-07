@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * @Author: Grechur
  * @CreateDate: 2020/5/6 17:47
  */
-public class OtherResponse<T> implements BaseResponse<T> {
+public class OtherResponse<T> extends BaseResponse<T> {
     @SerializedName("heads")
     public Heads heads;
 

@@ -1,16 +1,10 @@
-package com.grechur.toolsdemo;
+package com.grechur.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.database.ContentObserver;
-import android.database.Cursor;
-import android.net.Uri;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +14,9 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.grechur.common.contant.RouterSchame;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 //        time.append("uptimeMillis:"+DevicesTools.uptimeMillis()+"\n");
 //        time.append("systemActive:"+DevicesTools.systemActive()+"\n");
 //        textView.setText(time.toString());
-
+        ARouter.getInstance().build(RouterSchame.LOGIN_ACTIVITY).navigation();
     }
 
 

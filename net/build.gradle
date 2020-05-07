@@ -12,9 +12,17 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName : project.getName()]
+            }
+        }
     }
 
     buildTypes {
+        debug{
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -24,6 +32,7 @@ android {
 }
 
 dependencies {
+    def dependencies = rootProject.ext.dependencies
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -44,4 +53,7 @@ dependencies {
     api 'com.squareup.okio:okio:1.12.0'
     api "com.facebook.stetho:stetho:1.5.0"
     api "com.facebook.stetho:stetho-okhttp3:1.5.0"
+    api  dependencies.router
+    annotationProcessor dependencies.router_annotation
+    annotationProcessor dependencies.router_compile
 }
