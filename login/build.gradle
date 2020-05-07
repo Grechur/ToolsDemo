@@ -1,5 +1,11 @@
 apply plugin: 'com.android.library'
 
+def groupUseId = 'com.grechur'
+def moduleUseName = 'login'
+def x = 1
+def y = 0
+def z = 0
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -9,12 +15,20 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        resourcePrefix "login_"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName : project.getName()]
+            }
+        }
     }
 
     buildTypes {
+        debug{
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -23,9 +37,11 @@ android {
     dataBinding {
         enabled = true
     }
+
 }
 
 dependencies {
+    def dependencies = rootProject.ext.dependencies
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -36,4 +52,38 @@ dependencies {
 
     implementation project(':common')
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    annotationProcessor dependencies.router_annotation
+    annotationProcessor dependencies.router_compile
 }
+
+//////// 打包发布配置开始 ////////
+apply plugin: 'maven'
+ext {
+    // 从Github上clone下来的项目的本地地址
+    GITHUB_REPO_PATH = "../aar"       //这里指定的就是刚刚新建项目后clone下来的在本地的路径
+    PUBLISH_GROUP_ID = groupUseId
+    PUBLISH_ARTIFACT_ID = moduleUseName
+    PUBLISH_VERSION = x + '.' + y + '.' + z
+}
+uploadArchives {
+    repositories.mavenDeployer {
+        def deployPath = file(project.GITHUB_REPO_PATH)
+        repository(url: "file://${deployPath.absolutePath}")
+        pom.project {
+            groupId project.PUBLISH_GROUP_ID
+            artifactId project.PUBLISH_ARTIFACT_ID
+            version project.PUBLISH_VERSION
+        }
+    }
+}
+
+// 源代码一起打包
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.sourceFiles
+}
+artifacts {
+    archives androidSourcesJar
+}
+
+//////// 打包发布配置结束 ////////

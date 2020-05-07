@@ -13,17 +13,17 @@ import io.reactivex.functions.Function;
 public class BaseResponseParseFunc1<T extends BaseResponse<R>,R> implements Function<T,R> {
     @Override
     public R apply(T t) throws Exception {
-        if(t==null||t.heads==null){
+        if(t==null){
             throw new JsonParseException("json error");
         }
         if(!t.isSuccess()){
             try{
-                throw new ApiException(t.heads.code,t.heads.message);
+                throw new ApiException(t.errorCode,t.errorMsg);
             } catch (ApiException e) {
                 throw Exceptions.propagate(e);
             }
         }
-        return t.body;
+        return t.data;
     }
 
 }

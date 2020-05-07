@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="login_CheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated" >@android:color/white</item>
+        <item name="colorControlNormal" >@android:color/white</item>
+    </style>
+</resources>

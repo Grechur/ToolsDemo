@@ -2,7 +2,7 @@ package com.grechur.login.net;
 
 
 import com.grechur.login.bean.UserInfo;
-import com.grechur.net.BaseWanResponse;
+import com.grechur.net.BaseResponse;
 
 
 import io.reactivex.Observable;
@@ -20,6 +20,6 @@ import retrofit2.http.POST;
 public interface IUserService {
 
     @FormUrlEncoded
-    @POST
-    Observable<BaseWanResponse<UserInfo>> login(@Field("username") String username, @Field("password") String password);
+    @POST("/user/login")
+    Observable<BaseResponse<UserInfo>> login(@Field("username") String username, @Field("password") String password);
 }
