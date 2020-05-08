@@ -46,7 +46,7 @@ dependencies {
     implementation project(':common')
     annotationProcessor dependencies.router_compile
     implementation dependencies.material
-    implementation dependencies.bottomBar
+    api dependencies.bottomBar
 }
 //////// 打包发布配置开始 ////////
 apply plugin: 'maven'

@@ -1,22 +1,55 @@
-package com.grechur.main;
+package com.grechur.toolsdemo;
 
 
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.grechur.common.base.BaseActivity;
-import com.grechur.main.databinding.ActivityMainBinding;
-import com.grechur.main.viewmodel.MainViewModel;
+import com.grechur.toolsdemo.databinding.ActivityMainBinding;
+import com.grechur.toolsdemo.fragment.HomeFragment;
+import com.grechur.toolsdemo.viewmodel.MainViewModel;
 
 
-public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> implements BottomNavigationBar.OnTabSelectedListener{
+public class MainActivity extends BaseActivity<MainViewModel,ActivityMainBinding> implements BottomNavigationBar.OnTabSelectedListener{
 
     private Fragment currentFragment;
-    private Fragment homeFragment;
+    private HomeFragment homeFragment;
+    private HomeFragment homeFragment1;
+    private HomeFragment homeFragment2;
+    private HomeFragment homeFragment3;
+    private HomeFragment homeFragment4;
 
-    @Override
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        binding.bottomBar.addItem(new BottomNavigationItem(R.drawable.main_home_unsel,"首页"))
+//                .addItem(new BottomNavigationItem(R.drawable.main_system_unsel,"体系"))
+//                .addItem(new BottomNavigationItem(R.drawable.main_navigation_unsel,"导航"))
+//                .addItem(new BottomNavigationItem(R.drawable.main_project_unsel,"项目"))
+//                .addItem(new BottomNavigationItem(R.drawable.main_mine_unsel,"我的"))
+//                .setActiveColor(R.color.all_bg)
+//                .setMode(BottomNavigationBar.MODE_FIXED)
+//                .initialise();
+//        homeFragment = new HomeFragment();
+//        homeFragment1 = new HomeFragment();
+//        homeFragment2 = new HomeFragment();
+//        homeFragment3 = new HomeFragment();
+//        homeFragment4 = new HomeFragment();
+//        currentFragment = homeFragment;
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.add(R.id.container, homeFragment)
+//                .show(homeFragment).commit();
+//    }
+
+        @Override
     protected void initView() {
 
         binding.bottomBar.addItem(new BottomNavigationItem(R.drawable.main_home_unsel,"首页"))
@@ -27,7 +60,11 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
                 .setActiveColor(R.color.all_bg)
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .initialise();
-
+        homeFragment = new HomeFragment();
+        homeFragment1 = new HomeFragment();
+        homeFragment2 = new HomeFragment();
+        homeFragment3 = new HomeFragment();
+        homeFragment4 = new HomeFragment();
         currentFragment = homeFragment;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.container, homeFragment)
@@ -47,12 +84,16 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
                 showFragment(homeFragment);
                 break;
             case 1:
+                showFragment(homeFragment1);
                 break;
             case 2:
+                showFragment(homeFragment2);
                 break;
             case 3:
+                showFragment(homeFragment3);
                 break;
             case 4:
+                showFragment(homeFragment4);
                 break;
         }
     }

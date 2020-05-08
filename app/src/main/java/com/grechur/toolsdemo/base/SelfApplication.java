@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 
+import androidx.multidex.MultiDex;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.grechur.common.DefaultHttpService;
 import com.grechur.common.util.DevicesUtils;
@@ -23,6 +25,12 @@ public class SelfApplication extends Application {
 
     public static Context getCurrent() {
         return context;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     @Override

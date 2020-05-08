@@ -1,4 +1,4 @@
-package com.grechur.main.viewmodel;
+package com.grechur.toolsdemo.viewmodel;
 
 import com.grechur.common.base.BaseViewModel;
 

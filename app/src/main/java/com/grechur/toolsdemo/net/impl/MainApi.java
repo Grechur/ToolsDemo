@@ -1,7 +1,7 @@
-package com.grechur.main.net.impl;
+package com.grechur.toolsdemo.net.impl;
 
 import com.grechur.common.DefaultHttpService;
-import com.grechur.main.net.IMainService;
+import com.grechur.toolsdemo.net.IMainService;
 
 /**
  * @ProjectName: ToolsDemo

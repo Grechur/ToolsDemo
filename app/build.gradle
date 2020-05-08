@@ -11,6 +11,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
             javaCompileOptions {
                 annotationProcessorOptions {
@@ -63,6 +64,7 @@ dependencies {
     implementation project(path:':main')
     annotationProcessor dependencies.router_annotation
     annotationProcessor dependencies.router_compile
+    implementation "com.android.support:multidex:1.0.3"
 }
 //McImageConfig {
 //    isCheckSize false //Whether to detect image size，default true

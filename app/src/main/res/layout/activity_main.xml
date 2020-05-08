@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="com.grechur.main.viewmodel.MainViewModel" />
+            type="com.grechur.toolsdemo.viewmodel.MainViewModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

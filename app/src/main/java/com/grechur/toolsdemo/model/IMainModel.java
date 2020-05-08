@@ -1,6 +1,4 @@
-package com.grechur.main.model;
-
-import java.util.Map;
+package com.grechur.toolsdemo.model;
 
 /**
  * @ProjectName: ToolsDemo
