@@ -5,8 +5,11 @@ import com.grechur.login.bean.UserInfo;
 import com.grechur.net.BaseResponse;
 
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
@@ -22,4 +25,8 @@ public interface IUserService {
     @FormUrlEncoded
     @POST("/user/login")
     Observable<BaseResponse<UserInfo>> login(@Field("username") String username, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("/user/register")
+    Observable<BaseResponse<UserInfo>> register(@FieldMap Map<String,Object> map);
 }

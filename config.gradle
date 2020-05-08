@@ -7,34 +7,36 @@ ext {
     ]
 
     dependencies =[
-        eInterceptor:  'com.squareup.okhttp3:logging-interceptor:3.10.0',
-        stetho:              "com.facebook.stetho:stetho:1.5.0",
-        stethoOkhttp:        "com.facebook.stetho:stetho-okhttp3:1.5.0",
-        localbroad:          'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
-        rxjava:              'io.reactivex.rxjava2:rxjava:2.2.8',
-        rxandroid:           'io.reactivex.rxjava2:rxandroid:2.1.0',
-        retrofit:            'com.squareup.retrofit2:retrofit:2.3.0',
-        retrofitGson:        'com.squareup.retrofit2:converter-gson:2.3.0',//ConverterFactory的Gson依赖包
-        retrofitScalar:      'com.squareup.retrofit2:converter-scalars:2.3.0',//ConverterFactory的String依赖包
-        rxjavaAdapter:       'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
+        eInterceptor:           'com.squareup.okhttp3:logging-interceptor:3.10.0',
+        stetho:                 "com.facebook.stetho:stetho:1.5.0",
+        stethoOkhttp:           "com.facebook.stetho:stetho-okhttp3:1.5.0",
+        localbroad:             'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
+        rxjava:                 'io.reactivex.rxjava2:rxjava:2.2.8',
+        rxandroid:              'io.reactivex.rxjava2:rxandroid:2.1.0',
+        retrofit:               'com.squareup.retrofit2:retrofit:2.3.0',
+        retrofitGson:           'com.squareup.retrofit2:converter-gson:2.3.0',//ConverterFactory的Gson依赖包
+        retrofitScalar:         'com.squareup.retrofit2:converter-scalars:2.3.0',//ConverterFactory的String依赖包
+        rxjavaAdapter:          'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
 
-        okhttp:             'com.squareup.okhttp3:okhttp:3.10.0',
-        okhttpUrlCon:       'com.squareup.okhttp3:okhttp-urlconnection:3.10.0',
-        okio:               'com.squareup.okio:okio:1.12.0',
-        glide:              'com.github.bumptech.glide:glide:4.11.0',
-        glideCompiler:      'com.github.bumptech.glide:compiler:4.11.0',
-        spiderman:          "com.simple:spiderman:$spider_man",
+        okhttp:                 'com.squareup.okhttp3:okhttp:3.10.0',
+        okhttpUrlCon:           'com.squareup.okhttp3:okhttp-urlconnection:3.10.0',
+        okio:                   'com.squareup.okio:okio:1.12.0',
+        glide:                  'com.github.bumptech.glide:glide:4.11.0',
+        glideCompiler:          'com.github.bumptech.glide:compiler:4.11.0',
+        spiderman:              "com.simple:spiderman:$spider_man",
 
-        lifecycle:           "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
-        lifecycleViewmodel:  "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
-        smartLayout:         "com.scwang.smart:refresh-layout-kernel:2.0.0",     //核心必须依赖
-        smartHead:           "com.scwang.smart:refresh-header-classics:2.0.0",    //经典刷新头
-        smartFooter:         "com.scwang.smart:refresh-footer-classics:2.0.0",    //经典加载
-        recyclerview:        "androidx.recyclerview:recyclerview:1.0.0",
-        appcompat:           "androidx.appcompat:appcompat:1.0.2",
-        constraintlayout:    "androidx.constraintlayout:constraintlayout:1.1.3",
-        router:              "com.alibaba:arouter-api:1.3.1",
-        router_annotation:   "com.alibaba:arouter-compiler:1.1.4",
-        router_compile:      "com.alibaba:arouter-annotation:1.0.4"
+        lifecycle:              "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+        lifecycleViewmodel:     "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+        smartLayout:            "com.scwang.smart:refresh-layout-kernel:2.0.0",     //核心必须依赖
+        smartHead:              "com.scwang.smart:refresh-header-classics:2.0.0",    //经典刷新头
+        smartFooter:            "com.scwang.smart:refresh-footer-classics:2.0.0",    //经典加载
+        recyclerview:           "androidx.recyclerview:recyclerview:1.0.0",
+        appcompat:              "androidx.appcompat:appcompat:1.0.2",
+        constraintlayout:       "androidx.constraintlayout:constraintlayout:1.1.3",
+        router:                 "com.alibaba:arouter-api:1.3.1",
+        router_annotation:      "com.alibaba:arouter-compiler:1.1.4",
+        router_compile:         "com.alibaba:arouter-annotation:1.0.4",
+        material:               "com.google.android.material:material:1.1.0-alpha08",
+        bottomBar:              "com.ashokvarma.android:bottom-navigation-bar:2.2.0"
     ]
 }

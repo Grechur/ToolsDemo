@@ -4,6 +4,11 @@ import android.content.Context;
 import android.text.TextUtils;
 
 
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
+
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -83,6 +88,9 @@ public class HttpService {
         builder.okHttpClientBuilder.connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
         builder.okHttpClientBuilder.writeTimeout(writeTimeout, TimeUnit.MILLISECONDS);
         builder.okHttpClientBuilder.readTimeout(readTimeout, TimeUnit.MILLISECONDS);
+        ClearableCookieJar cookieJar =
+                new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+        builder.okHttpClientBuilder.cookieJar(cookieJar);
         mOkHttpClient = builder.okHttpClientBuilder.build();
         mRetrofit = new Retrofit.Builder()
                 .client(mOkHttpClient)

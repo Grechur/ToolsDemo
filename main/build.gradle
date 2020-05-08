@@ -45,6 +45,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(':common')
     annotationProcessor dependencies.router_compile
+    implementation dependencies.material
+    implementation dependencies.bottomBar
 }
 //////// 打包发布配置开始 ////////
 apply plugin: 'maven'

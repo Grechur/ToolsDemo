@@ -1,4 +1,4 @@
-package com.grechur.login.model;
+package com.grechur.main.model;
 
 import java.util.Map;
 
@@ -9,7 +9,6 @@ import java.util.Map;
  * @Author: Grechur
  * @CreateDate: 2020/5/6 17:55
  */
-public interface IUserModel {
-    void login(String name, String pwd);
-    void register(Map<String,Object> map);
+public interface IMainModel {
+
 }

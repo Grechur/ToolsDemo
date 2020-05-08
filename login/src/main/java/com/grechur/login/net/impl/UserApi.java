@@ -5,6 +5,8 @@ import com.grechur.login.bean.UserInfo;
 import com.grechur.login.net.IUserService;
 import com.grechur.net.BaseTransformer;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 
 /**
@@ -41,5 +43,9 @@ public class UserApi {
      */
     public Observable<UserInfo> login(String name,String pwd){
         return userService.login(name, pwd).compose(BaseTransformer.<UserInfo>applyTransform());
+    }
+
+    public Observable<UserInfo> register(Map<String,Object> map){
+        return userService.register(map).compose(BaseTransformer.<UserInfo>applyTransform());
     }
 }

@@ -1,57 +1,88 @@
 package com.grechur.main;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.grechur.common.base.BaseActivity;
+import com.grechur.main.databinding.ActivityMainBinding;
+import com.grechur.main.viewmodel.MainViewModel;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.grechur.common.contant.RouterSchame;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> implements BottomNavigationBar.OnTabSelectedListener{
 
-public class MainActivity extends AppCompatActivity {
-    private TextView textView;
-    private TextView battery;
-    private String[] permissions = {
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_PHONE_STATE
-    };
-
-    Handler handler;
+    private Fragment currentFragment;
+    private Fragment homeFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.boot_time);
-        battery = findViewById(R.id.battery);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(permissions,100001);
+    protected void initView() {
+
+        binding.bottomBar.addItem(new BottomNavigationItem(R.drawable.main_home_unsel,"首页"))
+                .addItem(new BottomNavigationItem(R.drawable.main_system_unsel,"体系"))
+                .addItem(new BottomNavigationItem(R.drawable.main_navigation_unsel,"导航"))
+                .addItem(new BottomNavigationItem(R.drawable.main_project_unsel,"项目"))
+                .addItem(new BottomNavigationItem(R.drawable.main_mine_unsel,"我的"))
+                .setActiveColor(R.color.all_bg)
+                .setMode(BottomNavigationBar.MODE_FIXED)
+                .initialise();
+
+        currentFragment = homeFragment;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.container, homeFragment)
+                .show(homeFragment).commit();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+
+    @Override
+    public void onTabSelected(int position) {
+        switch (position){
+            case 0:
+                showFragment(homeFragment);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
         }
-        textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+    }
+
+    @Override
+    public void onTabUnselected(int position) {
 
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    public void onTabReselected(int position) {
+
     }
 
-    public void onClick(View view) {
+    /**
+     * 展示Fragment
+     */
+    private void showFragment(Fragment fragment) {
+        if (currentFragment != fragment) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.hide(currentFragment);
+            currentFragment = fragment;
+            if (!fragment.isAdded()) {
+                transaction.add(R.id.container, fragment).show(fragment).commit();
+            } else {
+                transaction.show(fragment).commit();
+            }
+        }
+    }
+}
 //        StringBuffer time = new StringBuffer();
 //        time.append("bootTime:"+DevicesTools.bootTime()+"\n");
 //        time.append("timeZone:"+DevicesTools.timeZone()+"\n");
@@ -85,8 +116,3 @@ public class MainActivity extends AppCompatActivity {
 //        time.append("uptimeMillis:"+DevicesTools.uptimeMillis()+"\n");
 //        time.append("systemActive:"+DevicesTools.systemActive()+"\n");
 //        textView.setText(time.toString());
-        ARouter.getInstance().build(RouterSchame.LOGIN_ACTIVITY).navigation();
-    }
-
-
-}

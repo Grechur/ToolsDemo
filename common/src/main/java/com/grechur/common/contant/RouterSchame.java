@@ -13,4 +13,5 @@ public class RouterSchame {
 
 
     public static final String LOGIN_ACTIVITY = "/login/login_activity";
+    public static final String REGISTER_ACTIVITY = "/login/register_activity";
 }

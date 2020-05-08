@@ -12,8 +12,11 @@ import androidx.lifecycle.Observer;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.grechur.common.base.BaseActivity;
 import com.grechur.common.contant.RouterSchame;
+import com.grechur.common.util.toast.ToastUtils;
+import com.grechur.login.bean.UserInfo;
 import com.grechur.login.databinding.LoginActivityLoginBinding;
 import com.grechur.login.viewmodel.LoginViewModel;
+import com.grechur.net.ApiException;
 
 @Route(path = RouterSchame.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity<LoginViewModel, LoginActivityLoginBinding> {
@@ -22,12 +25,6 @@ public class LoginActivity extends BaseActivity<LoginViewModel, LoginActivityLog
     @Override
     protected int getLayoutId() {
         return R.layout.login_activity_login;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -40,6 +37,23 @@ public class LoginActivity extends BaseActivity<LoginViewModel, LoginActivityLog
                     binding.loginPas.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }else{
                     binding.loginPas.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
+        viewModel.userModel.userInfoLive.observe(this, new Observer<UserInfo>() {
+            @Override
+            public void onChanged(UserInfo userInfo) {
+                if(userInfo!=null){
+                    ToastUtils.show("登录成功");
+                    finish();
+                }
+            }
+        });
+        viewModel.userModel.error.observe(this, new Observer<ApiException>() {
+            @Override
+            public void onChanged(ApiException e) {
+                if(e!=null){
+                    ToastUtils.show(e.getMessage());
                 }
             }
         });

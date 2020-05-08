@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.grechur.main.MainActivity">
-
-    <TextView
-        android:id="@+id/boot_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:scrollbars="vertical"
-         />
-    <TextView
-        android:id="@+id/battery"
+    >
+    <data>
+        <variable
+            name="vm"
+            type="com.grechur.main.viewmodel.MainViewModel" />
+    </data>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:onClick="onClick"
-        android:text="获取信息"
-        android:gravity="center"
-        />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="54dp"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/bottom_bar"
+            android:layout_alignParentBottom="true"/>
+        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+</layout>
